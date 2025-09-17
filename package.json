@@ -1,0 +1,52 @@
+{
+  "name": "extend-media-files",
+  "displayName": "Extend Media Files",
+  "publisher": "nelo-one",
+  "description": "Drag-n-drop and Copy-n-paste of non-media files to markdown file",
+  "repository": {
+    "url": "https://github.com/joellti/extend-media-files",
+    "type": "git"
+  },
+  "version": "0.2.9",
+  "engines": {
+    "vscode": "^1.104.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Extend Media Files",
+      "properties": {
+        "extendMediaFiles.extensions": {
+          "type": "string",
+          "default": "pdf",
+          "description": "Comma-separated list of file extensions to handle like PDF (e.g., pdf,docx,xlsx)."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile-old": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "build": "esbuild src/extension.ts --bundle --outdir=dist --platform=node --external:vscode --format=cjs",
+    "compile": "npm run build",
+    "package": "npm run build && vsce package",
+    "publish": "npm run build && vsce publish"
+  },
+  "devDependencies": {
+    "@types/node": "22.x",
+    "@types/vscode": "^1.104.0",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "minimatch": "^10.0.3"
+  }
+}
